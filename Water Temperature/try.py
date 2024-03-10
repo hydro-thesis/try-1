@@ -5,13 +5,29 @@ from skfuzzy import control as ctrl
 
 # Create Antecedents and Consequent variables
 waterPh = ctrl.Antecedent(np.arange(0, 15, 1), 'pH level of Water')
+waterTdsLettuce = ctrl.Antecedent(np.arange(0, 2000, 1), 'tds for lettuce') #560 - 840
+waterEcLettuce = ctrl.Antecedent(np.arange(0, 3, 0.5), 'EC for lettuce') #1.2 - 1.8
 
-# # Define fuzzy sets for pH
+# ambientLight = ctrl.Antecedent(np.arange(0,))
+
+# Define fuzzy sets for pH
 waterPh['acidic'] = fuzz.trapmf(waterPh.universe, [0, 0, 4, 7])
 waterPh['neutral'] = fuzz.trimf(waterPh.universe, [5, 7, 9])
 waterPh['alkaline'] = fuzz.trapmf(waterPh.universe, [7, 10, 14, 15])
 
-waterPh['neutral'].view()
+
+# Define fuzzy sets for tds lettuce
+waterTdsLettuce['low'] = fuzz.trapmf(waterTdsLettuce.universe, [0, 0, 600, 800])
+waterTdsLettuce['acceptable'] = fuzz.trimf(waterTdsLettuce.universe, [700, 800, 900])
+waterTdsLettuce['high'] = fuzz.trapmf(waterTdsLettuce.universe, [800, 1000, 2000, 2000])
+
+
+# Define fuzzy sets for EC lettuce
+waterEcLettuce['low'] = fuzz.trapmf(waterEcLettuce.universe, [0, 0, 1, 1.5])
+waterEcLettuce['acceptable'] = fuzz.trimf(waterEcLettuce.universe, [1.2, 1.5, 1.8])
+waterEcLettuce['high'] = fuzz.trapmf(waterEcLettuce.universe, [1.5, 2, 3, 3])
+
+waterEcLettuce['acceptable'].view()
 
 plt.show()
 
