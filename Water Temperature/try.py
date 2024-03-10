@@ -12,6 +12,7 @@ waterPh['neutral'] = fuzz.trimf(waterPh.universe, [5, 7, 9])
 waterPh['alkaline'] = fuzz.trapmf(waterPh.universe, [7, 10, 14, 15])
 
 waterPh['neutral'].view()
+
 plt.show()
 
 # # Define fuzzy sets for fan_speed
